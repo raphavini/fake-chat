@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fake chat</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font: 13px Helvetica, Arial; 
+            display: grid;
+            grid-template-columns: 40% 40%;
+            grid-gap: 20px;
+            align-self: center;
+        }
+        .messages {  list-style-type: none; margin: 0; padding: 0;  }
+        .messages li { padding: 5px 10px; }
+        .messages li:nth-child(odd) { background: #eee; }
+
+        .box-chat {
+            border: 1px solid;
+            padding: 20px;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .left {
+            text-align: left;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  </head>
+  <body>
+    <div class="box-chat">
+        <ul id="messages1" class="messages"></ul>
+        <input id="m1" autocomplete="off" /><button onclick="sendMessage('1')">Send</button>
+    </div>
+    <div class="box-chat">
+        <ul id="messages2" class="messages"></ul>
+        <input id="m2" autocomplete="off" /><button onclick="sendMessage('2')">Send</button>
+    </div>
+    <script>
+        function sendMessage(idInput) {
+            var me = idInput;
+            var you = (idInput == 1) ? 2 : 1;
+
+            console.log(idInput);
+            message = $('#m'+idInput).val();
+
+            $('#messages'+me).append("<li class='right'><span>user"+idInput+": </span>"+message+"</li>");
+            $('#messages'+you).append("<li class='left'><span>user"+idInput+": </span>"+message+"</li>");
+
+            $('#m'+idInput).val('');
+        }
+      </script>
+  </body>
+</html>
